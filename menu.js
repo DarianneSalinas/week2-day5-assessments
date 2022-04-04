@@ -31,10 +31,10 @@
 */
 
 const pizza = {
-    Name: "Pepperoni Pizza",
+    Name: 'Pepperoni Pizza',
     price: 18.99,
-    category: "Entree",
-    popularity: "Number 1 Choice",
+    category: 'Entree',
+    popularity: 'Number 1 Choice',
     rating: 5,
     tags: ['Gluten-free', 'nut-free', 'vegetarian', 'meat lover']
 
@@ -68,6 +68,7 @@ console.log(pizza.tags[2])
     Print the value of your new price variable.
 */
 
+//destructure price property off of pizza object
 const {price} = pizza
 console.log(price)
 
@@ -93,7 +94,9 @@ console.log(category)
     data in some functions that you'll write.
 */
 
-var foodArr = [
+//every element in the array is its own object
+//objects are pasta alfredo, lasagna, tiramisu, prosciutto formaggio, spaghetti and meatballs
+const foodArr = [
 {   Name: "Pasta Alfredo ",
     price: 22.99,
     category: "Entree",
@@ -157,11 +160,20 @@ var foodArr = [
 // }
 //  console.log(identifier(foodArr))
 
-const filteredFood = foodArr.filter(function(tag) {
-    return tag.tags === 'dairy-free';
-}) 
- console.log(filteredFood)
+//second attempt
+// const filteredFood = foodArr.filter(function(tag) {
+//     return tag.tags === 'dairy-free';
+// }) 
+//  console.log(filteredFood)
 
+////code in review
+//loop over foodArr, for each individual object check specific tag and filter by
+const filteredFood = foodArr.filter(pizzaObj => {
+
+    return pizzaObj.tags.includes('poultry')
+} )
+
+console.log(filteredFood)
 
 //////////////////PROBLEM 5////////////////////
 /* 
@@ -195,15 +207,34 @@ const filteredFood = foodArr.filter(function(tag) {
         if it is, return objects whose value for the given
         property is greater than the `number` passed in
 
-        If the type isn't `below`, return objects whose
+        If the type is `below`, return objects whose
         value for the given property is less than the 
         `number` passed in
     
     Return the filtered array from the entire function
 */
 
+//1st attempt
+// const filterByProperty = (property, number, type) => {
+//     const filteredArray = foodArr.filter(callback)
+// }
+
+//code in review
+
 const filterByProperty = (property, number, type) => {
-    const filteredArray = foodArr.filter(callback)
+                                        //foodEntrees is what I name it, but can be anything
+    const filteredArr = foodArr.filter(foodEntrees => {
+        if(type === "above"){
+            //used foodEntrees[property] with bracket notation to ensure we access the property itself
+            // similar to console logging it, we had to use it in quotes to ensure access to the actual property
+            return foodEntrees[property] > number
+        } else if(type = 'below') {
+            return foodEntrees[property] < number
+        } else {
+            return 'you did not pass a valid type'
+        }
+    })
+    return filteredArr
 }
 
 /*
@@ -212,5 +243,6 @@ const filterByProperty = (property, number, type) => {
 
     You'll have to console.log to see the filtered array
 */
-
-//CODE HERE
+//'price' is our property, check if above 6
+//we are trying to filter by price property, specify name of propery of object we need to pass it as a string
+console.log(filterByProperty('price', 6, 'above'))

@@ -49,18 +49,33 @@ const greetUser = (username) => {
 */
 
 const deliveryAreaZipCodes = [85205, 85204, 85203, 85213, 85206]
+//mycode
+// const canWeDeliver = (zipCode) => {
+//     for (let i = 0; i < deliveryAreaZipCodes.length; i++) {
+//         if ( i === deliveryAreaZipCodes[i]) {
+//             return `You are eligible for delivery at that zipcode`
+//         }
+//         i++
+//     }
+//  return " Sorry, you are not eligible for delivery at that zipcode"
+// }
 
-const canWeDeliver = (zipCode) => {
-    for (let i = 0; i < deliveryAreaZipCodes.length; i++) {
-        if ( i === deliveryAreaZipCodes[i]) {
-            return `You are eligible for delivery at that zipcode`
-        }
-        i++
-    }
- return " Sorry, you are not eligible for delivery at that zipcode"
-}
+// canWeDeliver(85211)
 
-canWeDeliver(85211)
+//code in review
+//1st way
+
+// const canWeDeliver = zipcode => {
+//     //.includes is string and array method
+//     if(deliveryAreaZipCodes.includes(zipcode)) {
+//         return `You're in our delivery zone`
+//     } else {
+//         return `sorry you're not in our delivery zone`
+//     }
+// }
+
+
+
 
 
 
@@ -82,7 +97,37 @@ canWeDeliver(85211)
     Name your new function `canWeDeliverTwo`.
 */
 
-// CODE HERE
+//code in review
+// const canWeDeliverTwo = zipcode => {
+//     //loop over array of zipcodes
+//     for (let i = 0; i < deliveryAreaZipCodes.length; i++) {
+//         if (zipcode = deliveryAreaZipCodes[i]){
+//             return `You're in our delivery zone`
+//         } 
+//     }
+//     return `sorry, we can't deliver to that address`
+// }
+
+
+////2nd way with foreach
+
+const canWeDeliver = zipcode => {
+
+    let canDeliver = false
+    deliveryAreaZipCodes.forEach(zip => {
+        if(zip === zipcode) {
+            canDeliver = true
+        }
+    })
+    if(canDeliver) {
+        return `Youre in our delivery zone`
+    } else {
+        return `sorry we can't deliver to that address`
+    }
+}
+
+
+
 
 
 //////////////////PROBLEM 3////////////////////
@@ -117,6 +162,8 @@ const deals = [
     to be itself, but use the `replace` method
     to replace the 15 with a 10.
 */
+//code here
+
 
 // const updateTitle = deals.title;
 // console.log(updateTitle)
@@ -126,6 +173,13 @@ const deals = [
 // }
 // updateTitle.replace('15', '10')
 // console.log(updateTitle)
+
+////code in review
+
+//deals is an array so know we have to access at
+//replace spits out a new array and then reassign it to deals[0].title
+deals[0].title = deals[0].title.replace('15', '10')
+console.log(deals)
 
 /*
     The restaurant is going to continue its
@@ -141,3 +195,9 @@ const deals = [
 */
 
 //CODE HERE
+
+//code in review
+//accessing seceond elem in deals array so update to [1] and update replace() to replace march with april
+//.trim() is included at end to trim white space and it is invoked with the parentheses
+deals[1].title = deals[1].title.replace('March', 'April').trim()
+console.log(deals)

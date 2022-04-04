@@ -28,16 +28,32 @@
     Where CUSTOMERID and STATUS reference the values
     stored on the object.
 */
+//first attempt
+// class Ticket {
+//     constructor(items, orderTime, customerId) {
+//         this.status = 'queued';
+//     }
+//     updateStatus(newStatus) {
+//         this.status = newStatus
+//         console.log(`The order for customer ${customerId} is now ${this.status} `)
+//     }
+// }
 
 class Ticket {
-    constructor(items, orderTime, customerId) {
-        this.status = 'queued';
+    constructor(items, orderTime, customerId){
+        //this represents this item
+        this.items = items
+        this.ordertime = orderTime
+        this.customerId = customerId
+        this.status = 'queued'
     }
+
     updateStatus(newStatus) {
         this.status = newStatus
-        console.log(`The order for customer ${customerId} is now ${this.status} `)
+        console.log(`the order for the customer ${this.customerID} is now ${this.status}`)
     }
 }
+
 
 /*
     Create a new instance of your class.
@@ -49,13 +65,18 @@ class Ticket {
     ordered at: 7:03 PM
     customer: 575
 */
-const firstTicket = new Ticket('pizza, bread, soda', '7:03pm', 575)
 
 
+
+//created new object of the type Ticket
+const firstTicket = new Ticket(['pizza', 'bread', 'soda'], '7:03pm', 575)
+
+console.log(firstTicket)
 /*
     Call the `updateStatus` method on
     `firstTicket` passing in the string
     'cooking'
 */
 
-const cooking = Ticket(firstTicket.status)
+//const cooking = Ticket(firstTicket.status)
+firstTicket.updateStatus('cooking')

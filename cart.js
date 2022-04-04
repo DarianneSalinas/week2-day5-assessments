@@ -36,12 +36,31 @@ const cart = [
 //CODE HERE
 
 // const summedPrice = cart.reduce(/* CALLBACK HERE */)
-const summedPrice = cart.reduce(function(acc, cart) {
-    return acc + cart.price
-})
+// const summedPrice = cart.reduce(function(acc, cart) {
+//     return acc + cart.price
+// })
+
+// console.log(summedPrice)
+
+
+//code in review
+/* reduce is built to take in a callback function and 
+another parameter and separate those arguments
+*/ 
+//.reduce(acc, ord) => {},0) is all part of callback function
+const summedPrice = cart.reduce((acc, ord) => {
+    return acc + ord.price
+}, 0)    //need to specify to start at zero
 
 console.log(summedPrice)
 
+
+// const greeter = (name, greeting) => {
+//     return name + greeting
+// }
+
+// //this is the structure if we did not use .reduce
+// greeter(() => {}, 'hello')
 
 
 //////////////////PROBLEM 2////////////////////
@@ -59,9 +78,15 @@ console.log(summedPrice)
     decimals, for example: .06 for a 6% tax.
 */
 
+//cartTotal, couponvalue, tax are parameters bc parameters are in the function declaration
+//arguments are values that are passed into those functions
+
+//code in review
 const calcFinalPrice = (cartTotal, couponValue, tax) => {
-    const calcTax =
+    return (cartTotal * (1 + tax)) - couponValue
 }
+
+console.log(calcFinalPrice(10, 2, .25))
 
 
 //////////////////PROBLEM 3////////////////////
